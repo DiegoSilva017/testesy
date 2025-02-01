@@ -110,7 +110,8 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router": "^6.28.2",
-    "react-router-dom": "^6.28.2"
+    "react-router-dom": "^6.28.2",
+    "xml-js": "^1.6.11"
   },
   "devDependencies": {
     "@electron/rebuild": "^3.3.0",
@@ -163,6 +164,7 @@
     "rimraf": "^5.0.1",
     "sass": "^1.67.0",
     "sass-loader": "^13.3.2",
+    "stream-browserify": "^3.0.0",
     "style-loader": "^3.3.3",
     "terser-webpack-plugin": "^5.3.9",
     "ts-jest": "^29.1.1",
