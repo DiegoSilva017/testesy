@@ -4,7 +4,7 @@ import './hm.css';
 export default function Home() {
   const [xml, setXml] = useState<string | null>(null);
 
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const arqv = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file && file.type === 'text/xml') {
       const reader = new FileReader();
@@ -21,12 +21,7 @@ export default function Home() {
 
   return (
     <div className="container">
-      <input
-        type="file"
-        accept=".xml"
-        onChange={handleFileChange}
-        className="mb-4"
-      />
+      <input type="file" accept=".xml" onChange={arqv} className="mb-4" />
       {xml && <textarea value={xml} readOnly rows={10} className="area" />}
     </div>
   );
