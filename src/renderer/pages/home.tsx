@@ -1,28 +1,31 @@
-import { useState } from 'react';
-import './hm.css';
+import React, { useState } from 'react';
+import { XMLParser } from 'fast-xml-parser';
 
 export default function Home() {
-  const [xml, setXml] = useState<string | null>(null);
+  const [data, setData] = useState<any | null>(null);
 
   const arqv = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (file && file.type === 'text/xml') {
+    const file = event.target?.files?.[0];
+    if (file) {
       const reader = new FileReader();
       reader.onload = (e) => {
-        const text = e.target?.result as string;
-        setXml(text);
+        if (e.target && typeof e.target.result === 'string') {
+          const xml = e.target.result;
+          const parser = new XMLParser();
+          const jsonResul = parser.parse(xml);
+          setData(jsonResul);
+        }
       };
-      console.log(xml);
       reader.readAsText(file);
-    } else {
-      alert('Por favor, selecione um arquivo XML válido.');
     }
   };
 
   return (
-    <div className="container">
-      <input type="file" accept=".xml" onChange={arqv} className="mb-4" />
-      {xml && <textarea value={xml} readOnly rows={10} className="area" />}
+    <div>
+      <input type="file" accept=".xml" onChange={arqv} />*
+      <pre>
+        {data ? JSON.stringify(data, null, 2) : 'Nenhum dado carregado'}
+      </pre>
     </div>
   );
 }
